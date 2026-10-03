@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}History{% endblock %}{% block content %}
+<section class="page-head"><span class="eyebrow">YOUR PLANS</span><h1>Recommendation History</h1></section><div id="history" class="stack">Loading...</div>
+<script>(async()=>{const r=await fetch("/history"),d=await r.json(),el=document.getElementById("history");if(!r.ok){el.textContent=d.detail||"Unable to load history";return}
+if(!d.items.length){el.innerHTML="<div class='card'>No recommendations yet.</div>";return}
+el.innerHTML=d.items.map(x=>`<a class="card history-row" href="/recommendations/${x.id}"><div><strong>${x.planner.toUpperCase()}</strong><p>Budget: ₹${Number(x.budget).toLocaleString("en-IN")}</p></div><small>${new Date(x.created_at).toLocaleString()}</small></a>`).join("")})();</script>
+{% endblock %}

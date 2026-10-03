@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}PocketSmart AI{% endblock %}</title><link rel="stylesheet" href="/static/css/style.css"></head>
+<body><header class="topbar"><a class="brand" href="/">PocketSmart AI</a><nav>
+{% if user %}<a href="/dashboard">Dashboard</a><a href="/history-page">History</a><button class="link-button" onclick="logout()">Logout</button>
+{% else %}<a href="/login">Login</a><a class="nav-cta" href="/register">Register</a>{% endif %}
+</nav></header><main class="container">{% block content %}{% endblock %}</main>
+<footer>© 2026 PocketSmart AI · AI estimates should be verified before purchase.</footer><script src="/static/js/app.js"></script></body></html>

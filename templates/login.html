@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}Login{% endblock %}{% block content %}
+<div class="auth-card"><h1>Welcome back</h1><p>Sign in to your PocketSmart dashboard.</p>
+<form id="login-form"><label>Email<input type="email" name="email" required></label>
+<label>Password<input type="password" name="password" required></label><button class="button" type="submit">Login</button>
+<div id="form-message" class="message"></div></form><p>New here? <a href="/register">Create an account</a></p></div>
+<script>document.getElementById("login-form").addEventListener("submit",async(e)=>{e.preventDefault();const body=Object.fromEntries(new FormData(e.target));const r=await fetch("/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});const d=await r.json();if(r.ok)location.href="/dashboard";else document.getElementById("form-message").textContent=d.detail||"Login failed";});</script>
+{% endblock %}

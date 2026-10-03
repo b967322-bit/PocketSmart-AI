@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Recommendations{% endblock %}{% block content %}
+<section class="page-head"><span class="eyebrow">AI RESULTS</span><h1>Your Recommendations</h1></section><div id="result">Loading...</div>
+<script>(async()=>{const r=await fetch("/recommendations-details/{{ recommendation_id }}"),d=await r.json(),el=document.getElementById("result");if(!r.ok){el.textContent=d.detail||"Unable to load";return}
+const x=d.result;el.innerHTML=`<div class="card"><h2>${x.summary||"Plan"}</h2><p><strong>Source:</strong> ${x.source||"AI"}</p></div>
+<h2>Budget allocation</h2><div class="grid two">${(x.budget_allocation||[]).map(a=>`<div class="card"><strong>${a.category}</strong><div>₹${Number(a.amount||0).toLocaleString("en-IN")}</div></div>`).join("")}</div>
+<h2>Recommendations</h2><div class="grid two">${(x.recommendations||[]).map(a=>`<article class="card"><h3>${a.name}</h3><p>${a.category||""}</p><p><strong>Estimated:</strong> ₹${Number(a.estimated_price||0).toLocaleString("en-IN")}</p><p>${a.reason||""}</p><a href="${a.search_url}" target="_blank" rel="noopener">Open ${a.platform||"platform"} search ↗</a></article>`).join("")}</div>
+<h2>Tips</h2><ul>${(x.tips||[]).map(t=>`<li>${t}</li>`).join("")}</ul>`})();</script>
+{% endblock %}

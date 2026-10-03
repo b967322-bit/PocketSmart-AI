@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block title %}{{ planner|capitalize }} Planner{% endblock %}{% block content %}
+<section class="page-head"><span class="eyebrow">{{ planner|upper }} PLANNER</span><h1>Build your budget plan</h1><p>Enter your preferences. AI output is an estimate and should be verified.</p></section>
+<div class="planner-form card"><form id="planner-form" enctype="multipart/form-data">
+<label>Budget (₹)<input type="number" name="budget" min="1" step="1" required></label>
+{% if planner == "home" %}
+<label>City<input name="city" value="Chennai"></label><label>Rooms<input name="rooms_text" placeholder="Living Room, Bedroom, Kitchen"></label>
+<label>Style<select name="style"><option>Modern</option><option>Minimal</option><option>Traditional</option><option>Contemporary</option></select></label>
+<label>Items<input name="items_text" placeholder="lights:4, fans:2, dining table:1"></label>
+{% elif planner == "party" %}
+<label>City<input name="city" value="Chennai"></label><label>Guests<input type="number" name="guests" min="1" required></label>
+<label>Event type<input name="event_type" placeholder="Birthday, wedding, corporate" required></label><label>Venue preference<input name="venue" value="Flexible"></label>
+<label>Preferences<textarea name="preferences" placeholder="Vegetarian, theme, music..."></textarea></label>
+{% else %}
+<label>Occasion<input name="occasion" placeholder="Wedding, birthday, festive" required></label>
+<label>Style<select name="style"><option>Elegant</option><option>Minimal</option><option>Traditional</option><option>Modern</option></select></label>
+<label>Outfit notes<textarea name="outfit_notes" placeholder="Colour, neckline, material, etc."></textarea></label>
+<label>Outfit image (optional)<input type="file" name="outfit_image" accept="image/*"></label>
+{% endif %}
+<button class="button" type="submit">Generate Recommendations</button><div id="message" class="message"></div></form></div>
+{% endblock %}

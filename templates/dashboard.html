@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}{% block content %}
+<section class="page-head"><span class="eyebrow">DASHBOARD</span><h1>Hello, {{ user.full_name }}</h1><p>Choose a planner and turn your budget into an actionable plan.</p></section>
+<div class="grid three"><a class="card planner-card" href="/planner/home"><div class="icon">🏠</div><h2>Home Interior</h2><p>Furniture, lighting, decor and room planning.</p></a>
+<a class="card planner-card" href="/planner/party"><div class="icon">🎉</div><h2>Party</h2><p>Food, venue, decoration and entertainment.</p></a>
+<a class="card planner-card" href="/planner/jewelry"><div class="icon">💎</div><h2>Jewelry</h2><p>Occasion and outfit-aware jewelry suggestions.</p></a></div>
+{% endblock %}
